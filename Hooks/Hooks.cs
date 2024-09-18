@@ -1,3 +1,4 @@
+using BoDi;
 using Microsoft.Playwright;
 using TechTalk.SpecFlow;
 
@@ -7,16 +8,19 @@ namespace playwright_c_.Hooks
     public class Hooks
     {
         // public ScenarioContext _ScenarioContext;
+        private readonly IObjectContainer _objectContainer;
         public IPage _page;
         public IBrowser _browser;
         public IBrowserContext _browserContext;
 
-        public Hooks(IPage page, IBrowser browser, IBrowserContext browserContext)
+        // public Hooks(IPage page, IBrowser browser, IBrowserContext browserContext)
+        public Hooks(IObjectContainer objectContainer)
         {
-            _page = page;
-            _browser = browser;
-            _browserContext = browserContext;
-            //     _ScenarioContext = scenarioContext;
+            _objectContainer = objectContainer;
+            // _page = page;
+            // _browser = browser;
+            // _browserContext = browserContext;
+            // _ScenarioContext = scenarioContext;
         }
 
         [BeforeScenario]
