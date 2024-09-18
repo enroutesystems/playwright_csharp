@@ -4,18 +4,21 @@ namespace playwright_c_.pageObject
 {
     public class AboutUsPage
     {
-        public readonly IPage Page;
-        // private readonly ILocator _getStartedLink;
-        // public ILocator InstallationHeader => _installationHeader;
-        // private readonly string _url;
+        private readonly IPage _page;
         public AboutUsPage(IPage page)
         {
-            Page = page;
-            // _getStartedLink = page.GetByRole(AriaRole.Link, new() { Name = "Get started" });
-            // _url = "https://playwright.dev";
+            _page = page;
         }
 
-        public ILocator GridBoxTitles => Page.Locator(".pwr-services-item__title");
+        public async Task goToPage(string page)
+        {
+            await _page.GotoAsync("https://www.icevonline.com/" + page);
+        }
+        public ILocator getByText(string text)
+        {
+            return _page.GetByText(text);
+        }
+        public ILocator GridBoxTitles => _page.Locator(".pwr-services-item__title");
 
         public ILocator GetGridBoxTitleByIndex(int index)
         {

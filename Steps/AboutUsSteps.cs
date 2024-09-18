@@ -1,3 +1,4 @@
+using Microsoft.Playwright;
 using playwright_c_.pageObject;
 using PlaywrightTests.Utils;
 using TechTalk.SpecFlow;
@@ -9,16 +10,18 @@ namespace playwright_c_.Steps;
 public class AboutUsSteps
 {
     private readonly AboutUsPage _aboutUsPage;
+    private readonly IPage _page;
     
-    public AboutUsSteps(AboutUsPage aboutUsPage)
+    public AboutUsSteps(AboutUsPage aboutUsPage, IPage page)
     {
         _aboutUsPage = aboutUsPage;
+        _page = page;
     }
 
     [Given(@"AboutUs page is loaded")]
     public async void GivenAboutUsPageIsLoaded()
     {
-        await _aboutUsPage.Page.GotoAsync("https://www.icevonline.com/about-us");
+        await _aboutUsPage.goToPage("about-us");
     }
 
     [When(@"the ""(.*)"" grid box title contains the text ""(.*)""")]
@@ -46,7 +49,7 @@ public class AboutUsSteps
         for (int i = 0; i < boxes.Count; i++)
         {
             // search in the page for the box title, don't use the index or the page object, only check for any element with the text
-            await Expect(_aboutUsPage.Page.GetByText(boxes[i])).ToBeVisibleAsync();
+            await Expect(_aboutUsPage.getByText(boxes[i])).ToBeVisibleAsync();
         }
     }
 
@@ -56,7 +59,7 @@ public class AboutUsSteps
         var sectionText = multilineText.Split("---");
         for (int i = 0; i < sectionText.Length; i++)
         {
-            var element = _aboutUsPage.Page.GetByText(sectionText[i]);
+            var element = _aboutUsPage.getByText(sectionText[i]);
             await Expect(element).ToBeVisibleAsync();
         }
     }

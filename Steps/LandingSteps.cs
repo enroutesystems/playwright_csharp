@@ -1,4 +1,5 @@
-using PageObject;
+using Microsoft.Playwright;
+using playwright_c_.pageObject;
 using TechTalk.SpecFlow;
 using static Microsoft.Playwright.Assertions;
 
@@ -8,10 +9,12 @@ namespace playwright_c_.Steps;
 public class LandingSteps
 {
     private readonly LandingPage _landingPage;
+    private readonly IPage _page;
 
-    public LandingSteps(LandingPage landingPage)
+    public LandingSteps(LandingPage landingPage, IPage page)
     {
         _landingPage = landingPage;
+        _page = page;
     }
 
     [Given(@"""(.*)"" page is open")]

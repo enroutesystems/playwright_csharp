@@ -1,7 +1,7 @@
 
 using Microsoft.Playwright;
 
-namespace PageObject
+namespace playwright_c_.pageObject
 {
     public class LandingPage
     {
