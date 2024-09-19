@@ -8,13 +8,16 @@ namespace playwright_c_.Hooks
     public class Hooks
     {
         private readonly IObjectContainer _objectContainer;
-        public IPage _page;
-        public IBrowser _browser;
-        public IBrowserContext _browserContext;
+        public IPage? _page;
+        public IBrowser? _browser;
+        public IBrowserContext? _browserContext;
 
         public Hooks(IObjectContainer objectContainer)
         {
             _objectContainer = objectContainer;
+            _page = null;
+            _browser = null;
+            _browserContext = null;
         }
 
         [BeforeScenario]
@@ -27,7 +30,7 @@ namespace playwright_c_.Hooks
             });
             _browserContext = await _browser.NewContextAsync();
             _page = await _browserContext.NewPageAsync();
-            _objectContainer.RegisterInstanceAs<IPage>(_page);
+            _objectContainer.RegisterInstanceAs(_page);
         }
 
         [AfterScenario]
