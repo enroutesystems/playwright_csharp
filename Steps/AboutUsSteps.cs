@@ -19,13 +19,13 @@ public class AboutUsSteps
     }
 
     [Given(@"AboutUs page is loaded")]
-    public async void GivenAboutUsPageIsLoaded()
+    public async Task GivenAboutUsPageIsLoaded()
     {
         await _aboutUsPage.goToPage("about-us");
     }
 
     [When(@"the ""(.*)"" grid box title contains the text ""(.*)""")]
-    public async void WhenTheGridBoxTitleContainsTheText(string sequence, string expectedText)
+    public async Task WhenTheGridBoxTitleContainsTheText(string sequence, string expectedText)
     {
         int indexNumber = Utils.sequenceToIndexNumber(sequence);
         var element = _aboutUsPage.GetGridBoxTitleByIndex(indexNumber);
@@ -33,7 +33,7 @@ public class AboutUsSteps
     }
 
     [Then(@"all grid box title are visible")]
-    public async void ThenAllGridBoxTitleAreVisible()
+    public async Task ThenAllGridBoxTitleAreVisible()
     {
         var elements = await _aboutUsPage.GridBoxTitles.AllAsync();
         foreach (var element in elements)
@@ -43,7 +43,7 @@ public class AboutUsSteps
     }
 
     [When(@"the following information about us is displayed:")]
-    public async void WhenTheFollowingInformationAboutUsIsDisplayed(Table dataTable)
+    public async Task WhenTheFollowingInformationAboutUsIsDisplayed(Table dataTable)
     {
         var boxes = dataTable.Rows.Select(row => row[0]).ToList();
         for (int i = 0; i < boxes.Count; i++)
@@ -54,7 +54,7 @@ public class AboutUsSteps
     }
 
     [Then(@"each section has the correct information")]
-    public async void ThenEachSectionHasTheCorrectInformation(string multilineText)
+    public async Task ThenEachSectionHasTheCorrectInformation(string multilineText)
     {
         var sectionText = multilineText.Split("---");
         for (int i = 0; i < sectionText.Length; i++)

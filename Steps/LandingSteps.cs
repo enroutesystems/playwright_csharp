@@ -18,19 +18,19 @@ public class LandingSteps
     }
 
     [Given(@"""(.*)"" page is open")]
-    public async void GivenPageIsOpen(string landing)
+    public async Task GivenPageIsOpen(string landing)
     {
         await _landingPage.OpenAsync(landing);
     }
 
     [When(@"the ""(.*)"" dropdown is clicked")]
-    public async void WhenTheDropdownIsClicked(string menu)
+    public async Task WhenTheDropdownIsClicked(string menu)
     {
         await _landingPage.ExpandMenu(menu);
     }
 
     [Then(@"all menu options are visible")]
-    public async void ThenAllMenuOptionsAreVisible(Table table)
+    public async Task ThenAllMenuOptionsAreVisible(Table table)
     {
         var options = table.Rows[0][1].Split(",");
         foreach (var option in options)
