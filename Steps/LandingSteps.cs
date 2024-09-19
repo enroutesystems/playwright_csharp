@@ -5,6 +5,7 @@ using static Microsoft.Playwright.Assertions;
 
 namespace playwright_c_.Steps;
 
+[Parallelizable(scope: ParallelScope.All)]
 [Binding]
 public class LandingSteps
 {

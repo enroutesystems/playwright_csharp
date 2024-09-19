@@ -6,12 +6,13 @@ using static Microsoft.Playwright.Assertions;
 
 namespace playwright_c_.Steps;
 
+[Parallelizable(scope: ParallelScope.All)]
 [Binding]
 public class AboutUsSteps
 {
     private readonly AboutUsPage _aboutUsPage;
     private readonly IPage _page;
-    
+
     public AboutUsSteps(AboutUsPage aboutUsPage, IPage page)
     {
         _aboutUsPage = aboutUsPage;
