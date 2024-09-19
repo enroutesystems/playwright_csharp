@@ -6,12 +6,12 @@ namespace playwright_c_.pageObject
     public class LandingPage
     {
         private readonly IPage _page;
-        private readonly Dictionary<string, (ILocator, Dictionary<string, Dictionary<string, ILocator>>)> _menus;
+        public readonly Dictionary<string, (ILocator, Dictionary<string, Dictionary<string, ILocator>>)> Menus;
 
         public LandingPage(IPage page)
         {
             _page = page;
-            _menus = new Dictionary<string, (ILocator, Dictionary<string, Dictionary<string, ILocator>>)>
+            Menus = new Dictionary<string, (ILocator, Dictionary<string, Dictionary<string, ILocator>>)>
             {
                 { "solutions", (TopMenu["solutions"], SolutionsMenu) },
                 { "learning center", (TopMenu["learningCenter"], LearningCenterMenu) }
@@ -65,7 +65,7 @@ namespace playwright_c_.pageObject
                 {
                     { "tutorials", LearningCenterMenuFrame.GetByRole(AriaRole.Link, new() { Name = "Tutorials" }) },
                     { "guides", LearningCenterMenuFrame.GetByRole(AriaRole.Link, new() { Name = "Guides" }) },
-                    { "webinars", LearningCenterMenuFrame.GetByRole(AriaRole.Link, new() { Name = "Webinars" }) },
+                    { "webinars", LearningCenterMenuFrame.GetByRole(AriaRole.Link, new() { Name = "Virtual Events" }) },
                     { "caseStudies", LearningCenterMenuFrame.GetByRole(AriaRole.Link, new() { Name = "Case Studies" }) },
                     { "whitePapers", LearningCenterMenuFrame.GetByRole(AriaRole.Link, new() { Name = "White Papers" }) },
                     { "infoGraphics", LearningCenterMenuFrame.GetByRole(AriaRole.Link, new() { Name = "Infographics" }) },
@@ -84,8 +84,8 @@ namespace playwright_c_.pageObject
         {
             try
             {
-                await _menus[menu].Item1.HoverAsync();
-                return _menus[menu].Item2;
+                await Menus[menu].Item1.HoverAsync();
+                return Menus[menu].Item2;
             }
             catch (Exception e)
             {

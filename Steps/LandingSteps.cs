@@ -10,33 +10,39 @@ namespace playwright_c_.Steps;
 public class LandingSteps
 {
     private readonly LandingPage _landingPage;
-    private readonly IPage _page;
 
-    public LandingSteps(LandingPage landingPage, IPage page)
+    public LandingSteps(LandingPage landingPage)
     {
         _landingPage = landingPage;
-        _page = page;
     }
 
     [Given(@"""(.*)"" page is open")]
-    public async Task GivenPageIsOpen(string landing)
+    public async Task GivenPageIsOpen(string page)
     {
-        await _landingPage.OpenAsync(landing);
+        if (page == "landing")
+        {
+            page = "";
+        }
+        await _landingPage.OpenAsync(page);
     }
 
     [When(@"the ""(.*)"" dropdown is clicked")]
-    public async Task WhenTheDropdownIsClicked(string menu)
+    public async Task WhenTheDropdownIsClicked(string menuName)
     {
-        await _landingPage.ExpandMenu(menu);
+        await _landingPage.ExpandMenu(menuName);
     }
 
-    [Then(@"all menu options are visible")]
-    public async Task ThenAllMenuOptionsAreVisible(Table table)
+    [Then(@"all ""(.*)"" menu options are visible")]
+    public async Task ThenAllMenuOptionsAreVisible(string menuName)
     {
-        var options = table.Rows[0][1].Split(",");
-        foreach (var option in options)
+        var menuToHover = _landingPage.Menus[menuName];
+        await _landingPage.ExpandMenu(menuName);
+        foreach (var menuSection in menuToHover.Item2.Keys)
         {
-            await Expect(_landingPage.getElementsWithText(option)).ToBeVisibleAsync();
+            foreach (var submenu in menuToHover.Item2[menuSection])
+            {
+                await Expect(submenu.Value).ToBeVisibleAsync();
+            }
         }
     }
 }

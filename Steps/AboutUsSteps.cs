@@ -11,12 +11,10 @@ namespace playwright_c_.Steps;
 public class AboutUsSteps
 {
     private readonly AboutUsPage _aboutUsPage;
-    private readonly IPage _page;
 
-    public AboutUsSteps(AboutUsPage aboutUsPage, IPage page)
+    public AboutUsSteps(AboutUsPage aboutUsPage)
     {
         _aboutUsPage = aboutUsPage;
-        _page = page;
     }
 
     [Given(@"AboutUs page is loaded")]

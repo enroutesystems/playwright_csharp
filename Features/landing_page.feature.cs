@@ -78,12 +78,22 @@ namespace playwright_c_.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("open the landing page")]
-        public void OpenTheLandingPage()
+        [NUnit.Framework.CategoryAttribute("automated")]
+        [NUnit.Framework.TestCaseAttribute("solutions", null)]
+        [NUnit.Framework.TestCaseAttribute("learning center", null)]
+        public void OpenTheLandingPage(string menu, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] @__tags = new string[] {
+                    "automated"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("menu", menu);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("open the landing page", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 7
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -93,20 +103,14 @@ namespace playwright_c_.Features
             else
             {
                 this.ScenarioStart();
-#line 7
-        testRunner.Given("\"landing\" page is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 8
-        testRunner.When("the \"<menu>\" dropdown is clicked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+      testRunner.Given("\"landing\" page is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "menu"});
-                table2.AddRow(new string[] {
-                            "solutions"});
-                table2.AddRow(new string[] {
-                            "learning center"});
 #line 9
-        testRunner.Then("all menu options are visible", ((string)(null)), table2, "Then ");
+      testRunner.When(string.Format("the \"{0}\" dropdown is clicked", menu), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
+      testRunner.Then(string.Format("all \"{0}\" menu options are visible", menu), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

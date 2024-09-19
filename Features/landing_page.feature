@@ -4,9 +4,10 @@ Feature: Header menus
     we want to make sure these links are available regardless of whether they take us to where they should
 
     Scenario: open the landing page
-        Given "landing" page is open
-        When the "<menu>" dropdown is clicked
-        Then all menu options are visible
-          |   menu            |
-          |   solutions       |
-          |   learning center |
+      Given "landing" page is open
+      When the "<menu>" dropdown is clicked
+      Then all "<menu>" menu options are visible
+      Examples:
+        |   menu            |
+        |   solutions       |
+        |   learning center |
