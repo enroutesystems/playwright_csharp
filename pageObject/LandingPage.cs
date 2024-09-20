@@ -6,12 +6,12 @@ namespace playwright_c_.pageObject
     public class LandingPage
     {
         private readonly IPage _page;
-        public readonly Dictionary<string, (ILocator, Dictionary<string, Dictionary<string, ILocator>>)> Menus;
+        private readonly Dictionary<string, (ILocator, Dictionary<string, Dictionary<string, ILocator>>)> _menus;
 
         public LandingPage(IPage page)
         {
             _page = page;
-            Menus = new Dictionary<string, (ILocator, Dictionary<string, Dictionary<string, ILocator>>)>
+            _menus = new Dictionary<string, (ILocator, Dictionary<string, Dictionary<string, ILocator>>)>
             {
                 { "solutions", (TopMenu["solutions"], SolutionsMenu) },
                 { "learning center", (TopMenu["learningCenter"], LearningCenterMenu) }
@@ -79,13 +79,14 @@ namespace playwright_c_.pageObject
         public ILocator AboutUs => HeaderMenu.GetByRole(AriaRole.Menuitem, new() { Name = "About Us" });
         public ILocator Search => HeaderMenu.GetByRole(AriaRole.Link, new() { Name = "Search" });
         public ILocator ScheduleDemo => _page.Locator("#pwr-js-header-right-bar").GetByRole(AriaRole.Link, new() { Name = "Schedule A Demo + Trial" });
+        public (ILocator, Dictionary<string, Dictionary<string, ILocator>>) Menus(string menuName) => _menus[menuName];
 
         public async Task<Dictionary<string, Dictionary<string, ILocator>>> ExpandMenu(string menu)
         {
             try
             {
-                await Menus[menu].Item1.HoverAsync();
-                return Menus[menu].Item2;
+                await _menus[menu].Item1.HoverAsync();
+                return _menus[menu].Item2;
             }
             catch (Exception e)
             {

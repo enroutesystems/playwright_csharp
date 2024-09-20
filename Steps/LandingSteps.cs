@@ -35,7 +35,7 @@ public class LandingSteps
     [Then(@"all ""(.*)"" menu options are visible")]
     public async Task ThenAllMenuOptionsAreVisible(string menuName)
     {
-        var menuToHover = _landingPage.Menus[menuName];
+        var menuToHover = _landingPage.Menus(menuName);
         await _landingPage.ExpandMenu(menuName);
         foreach (var menuSection in menuToHover.Item2.Keys)
         {
