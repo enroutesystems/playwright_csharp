@@ -23,7 +23,7 @@ public class LandingSteps
         {
             page = "";
         }
-        await _landingPage.OpenAsync(page);
+        await _landingPage.GoToPage(page);
     }
 
     [When(@"the ""(.*)"" dropdown is clicked")]

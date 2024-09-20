@@ -2,27 +2,23 @@ using Microsoft.Playwright;
 
 namespace playwright_c_.pageObject
 {
-    public class AboutUsPage
+    public class AboutUsPage : Utils.PageObject
     {
         private readonly IPage _page;
-        public AboutUsPage(IPage page)
+        private readonly ILocator _gridBoxTitles;
+        public AboutUsPage(IPage page) : base(page)
         {
             _page = page;
+            _gridBoxTitles = _page.Locator(".pwr-services-item__title");
         }
-
-        public async Task goToPage(string page)
-        {
-            await _page.GotoAsync("https://www.icevonline.com/" + page);
-        }
-        public ILocator getByText(string text)
-        {
-            return _page.GetByText(text);
-        }
-        public ILocator GridBoxTitles => _page.Locator(".pwr-services-item__title");
 
         public ILocator GetGridBoxTitleByIndex(int index)
         {
-            return this.GridBoxTitles.Nth(index);
+            return _gridBoxTitles.Nth(index);
+        }
+        public async Task<IReadOnlyList<ILocator>> GetAllGridBoxTitles()
+        {
+            return await _gridBoxTitles.AllAsync();
         }
     }
 

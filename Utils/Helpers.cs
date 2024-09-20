@@ -1,6 +1,6 @@
 namespace PlaywrightTests.Utils;
 
-public class Utils
+public class Helpers
 {
     public static int sequenceToIndexNumber(string sequence)
     {
