@@ -1,13 +1,13 @@
 using Microsoft.Playwright;
 
-namespace playwright_c_.Utils;
+namespace playwright_c_.PageObject;
 
-public class PageObject
+public class Page
 {
     private readonly IPage _page;
     private readonly string _baseurl;
 
-    public PageObject(IPage page)
+    public Page(IPage page)
     {
         _page = page;
         _baseurl = "https://www.icevonline.com/";
