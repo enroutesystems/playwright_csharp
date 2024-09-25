@@ -1,5 +1,5 @@
 using Microsoft.Playwright;
-using playwright_c_.pageObject;
+using playwright_c_.PageObject;
 using TechTalk.SpecFlow;
 using static Microsoft.Playwright.Assertions;
 
@@ -23,7 +23,7 @@ public class LandingSteps
         {
             page = "";
         }
-        await _landingPage.OpenAsync(page);
+        await _landingPage.GoToPage(page);
     }
 
     [When(@"the ""(.*)"" dropdown is clicked")]

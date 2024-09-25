@@ -1,5 +1,5 @@
 using Microsoft.Playwright;
-using playwright_c_.pageObject;
+using playwright_c_.PageObject;
 using PlaywrightTests.Utils;
 using TechTalk.SpecFlow;
 using static Microsoft.Playwright.Assertions;
@@ -20,13 +20,13 @@ public class AboutUsSteps
     [Given(@"AboutUs page is loaded")]
     public async Task GivenAboutUsPageIsLoaded()
     {
-        await _aboutUsPage.goToPage("about-us");
+        await _aboutUsPage.GoToPage("about-us");
     }
 
     [When(@"the ""(.*)"" grid box title contains the text ""(.*)""")]
     public async Task WhenTheGridBoxTitleContainsTheText(string sequence, string expectedText)
     {
-        int indexNumber = Utils.sequenceToIndexNumber(sequence);
+        int indexNumber = Helpers.sequenceToIndexNumber(sequence);
         var element = _aboutUsPage.GetGridBoxTitleByIndex(indexNumber);
         await Expect(element).ToHaveTextAsync(expectedText);
     }
@@ -34,7 +34,7 @@ public class AboutUsSteps
     [Then(@"all grid box title are visible")]
     public async Task ThenAllGridBoxTitleAreVisible()
     {
-        var elements = await _aboutUsPage.GridBoxTitles.AllAsync();
+        var elements = await _aboutUsPage.GetAllGridBoxTitles();
         foreach (var element in elements)
         {
             await Expect(element).ToBeVisibleAsync();
@@ -48,7 +48,7 @@ public class AboutUsSteps
         for (int i = 0; i < boxes.Count; i++)
         {
             // search in the page for the box title, don't use the index or the page object, only check for any element with the text
-            await Expect(_aboutUsPage.getByText(boxes[i])).ToBeVisibleAsync();
+            await Expect(_aboutUsPage.GetByText(boxes[i])).ToBeVisibleAsync();
         }
     }
 
@@ -58,7 +58,7 @@ public class AboutUsSteps
         var sectionText = multilineText.Split("---");
         for (int i = 0; i < sectionText.Length; i++)
         {
-            var element = _aboutUsPage.getByText(sectionText[i]);
+            var element = _aboutUsPage.GetByText(sectionText[i]);
             await Expect(element).ToBeVisibleAsync();
         }
     }

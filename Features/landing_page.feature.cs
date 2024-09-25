@@ -78,22 +78,15 @@ namespace playwright_c_.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("open the landing page")]
-        [NUnit.Framework.CategoryAttribute("automated")]
         [NUnit.Framework.TestCaseAttribute("solutions", null)]
         [NUnit.Framework.TestCaseAttribute("learning center", null)]
         public void OpenTheLandingPage(string menu, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "automated"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("menu", menu);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("open the landing page", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 6
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -103,13 +96,13 @@ namespace playwright_c_.Features
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 7
       testRunner.Given("\"landing\" page is open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 8
       testRunner.When(string.Format("the \"{0}\" dropdown is clicked", menu), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 9
       testRunner.Then(string.Format("all \"{0}\" menu options are visible", menu), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
