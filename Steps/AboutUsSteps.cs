@@ -1,7 +1,7 @@
 using Microsoft.Playwright;
 using playwright_c_.PageObject;
 using PlaywrightTests.Utils;
-using TechTalk.SpecFlow;
+using Reqnroll;
 using static Microsoft.Playwright.Assertions;
 
 namespace playwright_c_.Steps;

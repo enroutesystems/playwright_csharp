@@ -1,6 +1,6 @@
-using BoDi;
+using Reqnroll.BoDi;
 using Microsoft.Playwright;
-using TechTalk.SpecFlow;
+using Reqnroll;
 
 namespace playwright_c_.Hooks
 {
@@ -34,7 +34,7 @@ namespace playwright_c_.Hooks
         }
 
         [AfterScenario]
-        public async void TearDown()
+        public async Task TearDown()
         {
             if (_page != null)
             {

@@ -1,6 +1,6 @@
 using Microsoft.Playwright;
 using playwright_c_.PageObject;
-using TechTalk.SpecFlow;
+using Reqnroll;
 using static Microsoft.Playwright.Assertions;
 
 namespace playwright_c_.Steps;
