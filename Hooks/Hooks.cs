@@ -1,5 +1,6 @@
 using Reqnroll.BoDi;
 using Microsoft.Playwright;
+using PlaywrightTests.Utils;
 using Reqnroll;
 
 namespace playwright_c_.Hooks
@@ -8,9 +9,9 @@ namespace playwright_c_.Hooks
     public class Hooks
     {
         private readonly IObjectContainer _objectContainer;
-        public IPage? _page;
-        public IBrowser? _browser;
-        public IBrowserContext? _browserContext;
+        private IPage? _page;
+        private IBrowser? _browser;
+        private IBrowserContext? _browserContext;
 
         public Hooks(IObjectContainer objectContainer)
         {
@@ -48,6 +49,12 @@ namespace playwright_c_.Hooks
             {
                 await _browser.CloseAsync();
             }
+        }
+        
+        [AfterTestRun]
+        public static async Task AfterTestRun()
+        {
+            await Helpers.GenerateAllureReport();
         }
     }
 }

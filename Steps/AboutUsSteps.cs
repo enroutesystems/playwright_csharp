@@ -26,7 +26,7 @@ public class AboutUsSteps
     [When(@"the ""(.*)"" grid box title contains the text ""(.*)""")]
     public async Task WhenTheGridBoxTitleContainsTheText(string sequence, string expectedText)
     {
-        int indexNumber = Helpers.sequenceToIndexNumber(sequence);
+        int indexNumber = Helpers.SequenceToIndexNumber(sequence);
         var element = _aboutUsPage.GetGridBoxTitleByIndex(indexNumber);
         await Expect(element).ToHaveTextAsync(expectedText);
     }
